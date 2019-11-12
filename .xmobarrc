@@ -1,0 +1,35 @@
+----------------------------------------------------------------------
+-- file:    ~/.xmobarrc
+-- author:  karma - (based on http://moparx.com/configs)
+-- date:    05/08/2013 - 18:12 EDT
+-- vim: set ai et fenc=utf-8 ft=haskell nu si sts=0 sw=4 ts=8 tw=0 :
+----------------------------------------------------------------------
+
+Config { font         = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+       , bgColor      = "#000000"
+       , border       = NoBorder
+       , position     = TopW L 100
+       , lowerOnStart = True
+       , hideOnStart  = False
+       , persistent   = True
+       , commands     = [ Run MultiCpu
+                          [ "-L","3"
+                          , "-H","50"
+                          , "--high","#FF5555"
+                          ] 10
+                        , Run Memory
+                          [ "-t","Mem: <usedratio>%"
+                          ] 10
+                        , Run Network "eth0"
+                          [ "-t", "<dev> Down: <rx> kB/s / Up: <tx> kB/s"
+                          ,"-H","70"
+                          ,"--high","#FF5555"
+                          ] 10
+                        , Run Weather "EPWR" ["-t","<tempC> C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                        , Run Date "%Y-%m-%_d %H:%M" "date" 10
+                        , Run StdinReader
+                        ]
+       , sepChar      = "%"
+       , alignSep     = "}{"
+       , template     = "%StdinReader% }{ %multicpu% <fc=#FaFFFF>|</fc> %memory% <fc=#FFFFFF>|</fc> %eth0% <fc=#FFFFFF>|</fc> %EPWR% | <fc=#D78787>%date%</fc>"
+       }
