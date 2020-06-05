@@ -34,18 +34,21 @@
   (require 'package)
   (add-to-list
    'package-archives
-   '("melpa" . "http://melpa.org/packages/")
+   '("melpa" . "https://melpa.org/packages/")
    t)
   (package-initialize))
 
 ;; package list
-(setq my-package-list '(exec-path-from-shell recentf projectile org-journal))
+(setq my-package-list
+      '(exec-path-from-shell recentf projectile org-journal solarized-theme))
 (mapc #'package-install my-package-list)
 
 (recentf-mode 1)
 (global-set-key "\C-xf" 'recentf-open-files)
 (add-to-list 'exec-path "~/bin")
-
+;; themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'solarized-dark t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -62,7 +65,7 @@
  '(org-journal-dir "/srv/vmdata/karma/proj/blog/")
  '(package-selected-packages
    (quote
-    (org-journal auto-complete recentf projectile spacemacs-theme exec-path-from-shell))))
+    (solarized-theme markdown-mode org-journal auto-complete recentf projectile spacemacs-theme exec-path-from-shell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

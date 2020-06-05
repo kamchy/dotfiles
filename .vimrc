@@ -31,6 +31,8 @@ Plugin 'VundleVim/Vundle.vim'
 "view
 Plugin 'itchyny/lightline.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'joshdick/onedark.vim'
+Plugin 'rakr/vim-one'
 "Tools
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
@@ -47,10 +49,16 @@ Plugin 'udalov/kotlin-vim'
 "wiki
 Plugin 'vimwiki/vimwiki'
 "markdown
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 "distraction-free
 Plugin 'junegunn/goyo.vim'
+" ending tags
+"Plugin 'alvan/vim-closetag'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+" markdown
+
 call vundle#end()
 
 filetype on " detect the type of file
@@ -60,15 +68,16 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme/Colors
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=light
+set background=dark
 
 syntax on " Set syntax highlighting on
 set t_Co=256
 "colorscheme wombat
-colorscheme solarized 
+colorscheme onedark
+"colorscheme solarized
 "Set also lightline
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'onedark',
       \ }
 
 "highlight ColorColumn ctermbg=235 guibg=#2c2d27
@@ -90,6 +99,7 @@ set mouse=a " use mouse everywhere
 set shortmess=atI " shortens messages to avoid 'press a key' prompt 
 set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise
+set relativenumber
 " make the splitters between indows be blank
 set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 
@@ -106,14 +116,12 @@ set fillchars=vert:\ ,stl:\ ,stlnc:\
 nnoremap <leader>w <C-w>v<C-w>l
 "clear whitespace at line ends
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-"search using Ack (requires Ack installed) 
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 "allows edit vimrc  file
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 "opens nerd tree
-"nnoremap <leader>nt :NERDTree<cr>
+nnoremap <leader>nt :NERDTree<cr>
 "toggles nerd tree
-"nnoremap <leader>ntt :NERDTreeToggle<cr>
+nnoremap <leader>ntt :NERDTreeToggle<cr>
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 
@@ -125,17 +133,7 @@ set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$ " what to show when I 
 "set columns=100 " 100 cols wide
 set so=10 " Keep 10 lines (top/bottom) for scope
 set novisualbell " don't blink
-set noerrorbells " no noises
-
-if v:version >= 703
-    "undo settings
-    set undodir=~/.vim/undofiles
-    set undofile
-    set colorcolumn=+1 "mark the ideal max text width
-endif
-"set statusline=%F%m%r%h%w\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-"set statusline=%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
-"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set colorcolumn=+1 "mark the ideal max text width
 set laststatus=2 " always show the status line
 :set guioptions-=T " disable toolbar
 :set guioptions-=m " disable menubar
@@ -152,8 +150,6 @@ set softtabstop=2 " unify
 set shiftwidth=2 " unify
 set expandtab " no tabs please!
 set encoding=utf-8
-"set nowrap " do not wrap lines
-"set smarttab " use tabs at the start of a line, spaces elsewhere
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,10 +174,6 @@ set grepprg=grep\ -nH\ $*
 
 " Spellcheck.
 " map V :!ispell -x %<CR>:e!<CR><CR>
-
-" ROT13 decode/encode the selected text (visual mode).
-" Alternative: 'unmap g' and then use 'g?'.
-vmap rot :!tr A-Za-z N-ZA-Mn-za-m<CR>
 
 " Make p in visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
@@ -243,6 +235,7 @@ let wiki = {}
 let wiki.path = '~/vimwiki/'
 let wiki.nested_syntaxes = {'python': 'python', 'java': 'java'}
 let g:vimwiki_list = [wiki]
+let g:vimwiki_global_ext = 0
 
 :hi VimwikiHeader1 guifg=#f0c674
 :hi VimwikiHeader2 guifg=#b5bd68
