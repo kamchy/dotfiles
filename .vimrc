@@ -2,10 +2,10 @@
 " General
 """""""""""""""""""""""""""""""""""""""""""
 set nocompatible " Get out of horrible vi-compatible mode
-set nobackup " Don't create backup files                        
+set nobackup " Don't create backup files
 set history=1000 " How many lines of history to remember
 set undolevels=200 " How many times an udo can be done
-set showcmd " Shows partial command in last line of the editor 
+set showcmd " Shows partial command in last line of the editor
 set showmatch " Show matching brackets
 set noshowmode " Dont Show current mode - lightline exists
 set ignorecase " Make searches case insensitive
@@ -88,7 +88,7 @@ let g:lightline = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set lsp=0 " space it out a little more (easier to read)
 set wildmenu " turn on wild menu
-set ruler " Always show current positions along the bottom 
+set ruler " Always show current positions along the bottom
 set cmdheight=2 " the command bar is 2 high
 set number " turn on line numbers
 set lz " do not redraw while running macros (much faster) (LazyRedraw)
@@ -96,12 +96,12 @@ set hid " you can change buffer without saving
 set backspace=2 " make backspace work normal
 set whichwrap+=<,>,b,s  " backspace, space and cursor keys wrap to pre/next line
 set mouse=a " use mouse everywhere
-set shortmess=atI " shortens messages to avoid 'press a key' prompt 
+set shortmess=atI " shortens messages to avoid 'press a key' prompt
 set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise
 set relativenumber
 " make the splitters between indows be blank
-set fillchars=vert:\ ,stl:\ ,stlnc:\ 
+set fillchars=vert:\ ,stl:\ ,stlnc:\
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -110,7 +110,7 @@ set fillchars=vert:\ ,stl:\ ,stlnc:\
 "nnoremap <C-h> <C-w>h
 "nnoremap <C-j> <C-w>j
 ""not good - digraphs
-"nnoremap <C-k> <C-w>k 
+"nnoremap <C-k> <C-w>k
 "nnoremap <C-l> <C-w>l
 "split vertically and move to new split
 nnoremap <leader>w <C-w>v<C-w>l
@@ -161,8 +161,8 @@ ab pymain if __name__ == "__main__":<cr>
 " Quit with 'q' instead of ':q'. VERY useful!
 "map q :q<CR> "but misleading if you want to record macros...
 " Mappings for date?
-nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
-imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
+nmap <F3> <C-R>=strftime("%F %a %H:%M")<CR>
+imap <F3> <C-R>=strftime("%F %a %H:%M")<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep: search in single file should always display filename (to not confuse latex script
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,17 +178,6 @@ set grepprg=grep\ -nH\ $*
 " Make p in visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
-
-" OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-
 ""    My mappings from "learn the vimscript the hard way"
 inoremap jk <esc>
 inoremap <esc> <nop>
@@ -239,7 +228,7 @@ let g:vimwiki_global_ext = 0
 
 :hi VimwikiHeader1 guifg=#f0c674
 :hi VimwikiHeader2 guifg=#b5bd68
-:hi VimwikiHeader3 guifg=#8abeb7  
+:hi VimwikiHeader3 guifg=#8abeb7
 :hi VimwikiHeader4 guifg=#b294bb
 :hi VimwikiHeader5 guifg=#81a2be
 :hi VimwikiHeader6 guifg=#de935f
@@ -247,4 +236,7 @@ let g:vimwiki_global_ext = 0
 " Clojure editing
 " paredit leader
 let g:paredit_leader = '\'
+
+"markdpwn
+let g:vim_markdown_folding_disabled = 1
 
