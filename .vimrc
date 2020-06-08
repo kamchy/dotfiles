@@ -33,6 +33,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'joshdick/onedark.vim'
 Plugin 'rakr/vim-one'
+Plugin 'morhetz/gruvbox'
 "Tools
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
@@ -56,7 +57,8 @@ Plugin 'junegunn/goyo.vim'
 "Plugin 'alvan/vim-closetag'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-
+Plugin 'ap/vim-css-color'
+Plugin 'preservim/nerdtree'
 " markdown
 
 call vundle#end()
@@ -101,19 +103,17 @@ set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise
 set relativenumber
 " make the splitters between indows be blank
-set fillchars=vert:\ ,stl:\ ,stlnc:\
+"set fillchars=vert:\ ,stl:\ ,stlnc:\
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "direction keys without pressing W
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-""not good - digraphs
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
-"split vertically and move to new split
-nnoremap <leader>w <C-w>v<C-w>l
+let mapleader = " "
+noremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
 "clear whitespace at line ends
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 "allows edit vimrc  file
@@ -135,6 +135,7 @@ set so=10 " Keep 10 lines (top/bottom) for scope
 set novisualbell " don't blink
 set colorcolumn=+1 "mark the ideal max text width
 set laststatus=2 " always show the status line
+
 :set guioptions-=T " disable toolbar
 :set guioptions-=m " disable menubar
 :set guioptions-=r " disable scrollbar
@@ -158,11 +159,7 @@ set encoding=utf-8
 "iab xdate <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 ab pyenc #!/usr/bin/python vim: set fileencoding=UTF-8<cr>
 ab pymain if __name__ == "__main__":<cr>
-" Quit with 'q' instead of ':q'. VERY useful!
-"map q :q<CR> "but misleading if you want to record macros...
-" Mappings for date?
-nmap <F3> <C-R>=strftime("%F %a %H:%M")<CR>
-imap <F3> <C-R>=strftime("%F %a %H:%M")<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep: search in single file should always display filename (to not confuse latex script
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -172,8 +169,6 @@ set grepprg=grep\ -nH\ $*
 " Miscellaneous stuff.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Spellcheck.
-" map V :!ispell -x %<CR>:e!<CR><CR>
 
 " Make p in visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
@@ -185,8 +180,6 @@ nnoremap <leader>sv :source $MYVIMRC <cr>
 
 " Some niceties from http://statico.github.io/vim.html
 "
-" line numbers on/off
-:nmap <leader>l :setlocal number!<CR>
 " paste mode on/off
 :nmap <leader>p :set paste!<CR>
 " behavior of comman line
@@ -214,7 +207,10 @@ nnoremap <silent> ]B :blast<CR>
 
 " save file path in + register
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
-:vmap [q "zdi"<C-R>z"
+
+" Mappings for date
+nmap <F3> <C-R>=strftime("%F %a %H:%M")<CR>
+imap <F3> <C-R>=strftime("%F %a %H:%M")<CR>
 
 
 runtime macros/matchit.vim
@@ -226,17 +222,23 @@ let wiki.nested_syntaxes = {'python': 'python', 'java': 'java'}
 let g:vimwiki_list = [wiki]
 let g:vimwiki_global_ext = 0
 
-:hi VimwikiHeader1 guifg=#f0c674
-:hi VimwikiHeader2 guifg=#b5bd68
-:hi VimwikiHeader3 guifg=#8abeb7
-:hi VimwikiHeader4 guifg=#b294bb
-:hi VimwikiHeader5 guifg=#81a2be
-:hi VimwikiHeader6 guifg=#de935f
+hi VimwikiHeader1 guifg=#f0c674
+hi VimwikiHeader2 guifg=#b5bd68
+hi VimwikiHeader3 guifg=#8abeb7
+hi VimwikiHeader4 guifg=#b294bb
+hi VimwikiHeader5 guifg=#81a2be
+hi VimwikiHeader6 guifg=#de935f
 
 " Clojure editing
 " paredit leader
 let g:paredit_leader = '\'
 
-"markdpwn
+"markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_no_extensions_in_markdown = 1
 
+"netrw
+let g:netrw_liststyle=3
+let g:netrw_browse_split=2
+let g:netrw_banner=0
+let g:netrw_winsize=25
