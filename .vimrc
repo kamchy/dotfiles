@@ -59,6 +59,15 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'ap/vim-css-color'
 Plugin 'preservim/nerdtree'
+" deoplete with dependencies
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePluginins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 " markdown
 
 call vundle#end()
@@ -242,3 +251,6 @@ let g:netrw_liststyle=3
 let g:netrw_browse_split=2
 let g:netrw_banner=0
 let g:netrw_winsize=25
+
+" omnicomplete?
+set omnifunc=syntaxcomplete#Complete
