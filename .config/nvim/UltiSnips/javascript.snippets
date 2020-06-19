@@ -6,7 +6,8 @@ const s = {
 };
 
 function setup() {
-	createCanvas(s.wi, s.hi);
+	var canvas = createCanvas(s.wi, s.hi);
+	canvas.parent("p5_js");
 	background('#222');
 }
 
