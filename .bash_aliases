@@ -1,6 +1,6 @@
 #------ System aliases ----
-alias la='ls -al'
-alias ll='ls -l'
+alias la='exa -al'
+alias ll='exa -l'
 #------ Git aliases ----
 alias g="git"
 alias gco="git checkout"
@@ -21,3 +21,4 @@ alias gmm='git merge --log --no-ff'
 alias mc='.  /usr/share/mc/bin/mc-wrapper.sh'
 alias vim="nvim"
 alias emacs='emacsclient -c -a ""'
+alias devblog='cd /srv/vmdata/karma/proj/dev-blog/'
