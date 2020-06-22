@@ -13,7 +13,7 @@ set smartcase " unless they contain uppercase letters
 set incsearch " highlight during searching
 set hlsearch "highlight..
 "but quit hl mode with \q
-:nmap <leader>q :nohlsearch<CR>
+nmap <leader>q :nohlsearch<CR>
 
 set gdefault "apply substitutions globally in line
 set scrolloff=5 " Keep context while scrolling
