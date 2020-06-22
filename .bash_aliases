@@ -21,4 +21,8 @@ alias gmm='git merge --log --no-ff'
 alias mc='.  /usr/share/mc/bin/mc-wrapper.sh'
 alias vim="nvim"
 alias emacs='emacsclient -c -a ""'
-alias devblog='cd /srv/vmdata/karma/proj/dev-blog/'
+
+
+if [ -f ~/.bash_aliases_local ]; then
+    . ~/.bash_aliases_local
+fi

@@ -67,7 +67,8 @@ else
   Plugin 'roxma/nvim-yarp'
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
-let g:deoplete#enable_at_startup = 1
+"deoplete sources
+Plugin 'deoplete-plugins/deoplete-jedi'
 " markdown
 
 call vundle#end()
@@ -254,3 +255,5 @@ let g:netrw_winsize=25
 
 " omnicomplete?
 set omnifunc=syntaxcomplete#Complete
+"deoplete
+let g:deoplete#enable_at_startup = 1
