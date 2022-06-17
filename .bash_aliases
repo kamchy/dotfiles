@@ -12,7 +12,6 @@ alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias go='git checkout '
 alias gk='gitk --all&'
 alias glg='git log --graph --full-history --all --color  --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias grl='git reflog -n10'
@@ -21,7 +20,9 @@ alias gmm='git merge --log --no-ff'
 alias mc='.  /usr/share/mc/bin/mc-wrapper.sh'
 alias vim="nvim"
 alias emacs='emacsclient -c -a ""'
-
+# pbcopy (after xlicp installation
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
 if [ -f ~/.bash_aliases_local ]; then
     . ~/.bash_aliases_local

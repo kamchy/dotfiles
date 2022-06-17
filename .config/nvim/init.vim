@@ -3,4 +3,5 @@ set packpath+=~/.vim
 source ~/.vimrc
 
 :tnoremap <Esc> <C-\><C-n>
+set noswapfile
 
