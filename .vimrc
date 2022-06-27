@@ -79,6 +79,9 @@ Plugin 'cespare/vim-toml'
 " Vim table mode
 " https://github.com/dhruvasagar/vim-table-mode
 Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'nvim-telescope/telescope.nvim'
+Plugin  'nvim-lua/plenary.nvim'
+Plugin 'srcery-colors/srcery-vim'
 call vundle#end()
 
 filetype on " detect the type of file
@@ -92,6 +95,7 @@ set background=dark
 
 syntax on " Set syntax highlighting on
 set t_Co=256
+set termguicolors "https://github.com/tmux/tmux/issues/699
 colorscheme atelier-dune
 
 "Set also lightline
@@ -109,7 +113,6 @@ set lsp=0 " space it out a little more (easier to read)
 set wildmenu " turn on wild menu
 set ruler " Always show current positions along the bottom
 set cmdheight=2 " the command bar is 2 high
-set number " turn on line numbers
 set lz " do not redraw while running macros (much faster) (LazyRedraw)
 set hid " you can change buffer without saving
 set backspace=2 " make backspace work normal
@@ -118,10 +121,12 @@ set mouse=a " use mouse everywhere
 set shortmess=atI " shortens messages to avoid 'press a key' prompt
 set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise
+" always numbers, relative
+set number " turn on line numbers
 set relativenumber
-set termguicolors "https://github.com/tmux/tmux/issues/699
+
 " make the splitters between indows be blank
-"set fillchars=vert:\ ,stl:\ ,stlnc:\
+set fillchars=vert:\ ,stl:\ ,stlnc:\
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -135,7 +140,7 @@ nnoremap <leader>l :wincmd l<CR>
 "clear whitespace at line ends
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 "allows edit vimrc  file
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>ev <C-w><C-v><C-l>:e ~/.vimrc<cr>
 "opens nerd tree
 nnoremap <leader>nt :NERDTree<cr>
 "toggles nerd tree
@@ -320,3 +325,11 @@ let g:go_list_type = "quickfix"
 "enable toml hightlighting
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_math = 1
+
+"telescope
+"" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+

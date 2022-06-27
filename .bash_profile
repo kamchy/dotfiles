@@ -4,9 +4,9 @@ case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 CARGO_HOME=$HOME/.cargo/bin
 DENO_HOME=$HOME/.deno/bin
-NVIM5_HOME=$HOME/prog/nvim-linux64/bin
-FFOX_HOME=$HOME/prog/firefox
-export EDITOR=/usr/bin/nvim
+NVIM5_HOME=/snap/bin/nvim
+FFOX_HOME=$HOME/prog/firefox-nightly
+export EDITOR=/snap/bin/nvim
 
 export PATH=$FFOX_HOME:$PATH:$HOME/bin:$HOME/.local/bin:$JAVA_HOME:$CARGO_HOME:$DENO_HOME
 
