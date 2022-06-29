@@ -1,4 +1,6 @@
-case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
+if [ -r ~/.bashrc ]; then 
+  . ~/.bashrc; 
+fi
 
 #------ Paths ----
 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
@@ -56,4 +58,5 @@ export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;c2m\]\u@\h\[\033[01;34m\
 source /etc/bash_completion.d/git-prompt
 #source /usr/share/bash-completion/completions/git
 
-
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

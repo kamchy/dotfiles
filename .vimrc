@@ -78,10 +78,15 @@ Plugin 'fatih/vim-go'
 Plugin 'cespare/vim-toml'
 " Vim table mode
 " https://github.com/dhruvasagar/vim-table-mode
+" telescope
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'nvim-telescope/telescope.nvim'
+Plugin 'nvim-telescope/telescope-symbols.nvim'
 Plugin  'nvim-lua/plenary.nvim'
 Plugin 'srcery-colors/srcery-vim'
+
+"telekasten
+Plugin 'renerocksai/telekasten.nvim'
 call vundle#end()
 
 filetype on " detect the type of file
@@ -96,11 +101,12 @@ set background=dark
 syntax on " Set syntax highlighting on
 set t_Co=256
 set termguicolors "https://github.com/tmux/tmux/issues/699
-colorscheme atelier-dune
+colorscheme gruvbox
+
 
 "Set also lightline
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'gruvbox',
       \ }
 
 "highlight ColorColumn ctermbg=235 guibg=#2c2d27
@@ -325,6 +331,7 @@ let g:go_list_type = "quickfix"
 "enable toml hightlighting
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_math = 1
+let g:vim_markdown_new_list_item_indent = 0
 
 "telescope
 "" Find files using Telescope command-line sugar.
