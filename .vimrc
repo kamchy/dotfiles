@@ -87,6 +87,11 @@ Plugin 'srcery-colors/srcery-vim'
 
 "telekasten
 Plugin 'renerocksai/telekasten.nvim'
+" markdown viewer
+" after installation
+" :call mkdp#util#install()
+Plugin 'iamcco/markdown-preview.nvim'
+
 call vundle#end()
 
 filetype on " detect the type of file
@@ -131,8 +136,8 @@ set noerrorbells " don't make noise
 set number " turn on line numbers
 set relativenumber
 
-" make the splitters between indows be blank
-set fillchars=vert:\ ,stl:\ ,stlnc:\
+" make the splitters between windows be blank
+set fillchars=vert:\|,stl:\ ,stlnc:\
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -186,7 +191,7 @@ set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Useful abbrevs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-iab date <C-R>=strftime("%Y-%m-%d %H:%M:%S")<cr>
+" iab date <C-R>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 ab pyenc #!/usr/bin/python vim: set fileencoding=UTF-8<cr>
 ab pymain if __name__ == "__main__":<cr>
 
@@ -201,7 +206,7 @@ vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""    My mappings from "learn the vimscript the hard way"
 inoremap jk <esc>
-inoremap <esc> <nop>
+"inoremap <esc> <nop>
 nnoremap <leader>sv :source $MYVIMRC <cr>
 
 " Some niceties from http://statico.github.io/vim.html
@@ -225,7 +230,7 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
 
 " Mappings for date - F3 inserts 2022-05-22 06:52:39 in insert mode
-imap <F3> <C-R>=strftime("%F %a %H:%M")<CR>
+imap <F3> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 
 " sync current buffer with ntt: 2 options
 " 1. sets working dir to current file's dir or...
@@ -317,11 +322,11 @@ map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-autocmd FileType go nmap <leader>f  <Plug>(go-fmt)
-autocmd FileType go nmap <leader>i  <Plug>(go-imports)
+autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+autocmd FileType go nmap <leader>gf  <Plug>(go-fmt)
+autocmd FileType go nmap <leader>gi  <Plug>(go-imports)
 
 "autoformat code AND clean up imports
 let g:go_fmt_command = "goimports"
@@ -333,10 +338,5 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_new_list_item_indent = 0
 
-"telescope
-"" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
+"telescope: config is in telescope-config.vim  in ~/.config/nvim
+let g:coc_node_path = trim(system('which node'))

@@ -1,5 +1,3 @@
-echo "hello from telekasten-config.vim"
-
 lua << END
 local home = vim.fn.expand("~/zettelkasten")
 require('telekasten').setup({
@@ -13,14 +11,14 @@ require('telekasten').setup({
     auto_set_filetype = true,
 
     -- dir names for special notes (absolute path or subdir name)
-    dailies      = home .. '/' .. 'daily',
-    weeklies     = home .. '/' .. 'weekly',
+    dailies      = home .. '/' .. 'data' .. '/' ..'daily',
+    weeklies     = home .. '/' .. 'data' .. '/' ..'weekly',
     templates    = home .. '/' .. 'templates',
 
     -- image (sub)dir for pasting
     -- dir name (absolute path or subdir name)
     -- or nil if pasted images shouldn't go into a special subdir
-    image_subdir = "img",
+    image_subdir = 'data' .. '/' .. "img",
 
     -- markdown file extension
     extension    = ".md",
@@ -42,7 +40,7 @@ require('telekasten').setup({
     weeklies_create_nonexisting = true,
 
     -- skip telescope prompt for goto_today and goto_thisweek
-    journal_auto_open = false,
+    journal_auto_open = true,
 
     -- template for new notes (new_note, follow_link)
     -- set to `nil` or do not specify if you do not want a template
@@ -54,7 +52,7 @@ require('telekasten').setup({
 
     -- template for newly created weekly notes (goto_thisweek)
     -- set to `nil` or do not specify if you do not want a template
-    template_new_weekly= home .. '/' .. 'templates/weekly.md',
+    -- template_new_weekly= home .. '/' .. 'templates/weekly.md',
 
     -- image link style
     -- wiki:     ![[image name]]
@@ -80,7 +78,7 @@ require('telekasten').setup({
     insert_after_inserting = true,
 
     -- tag notation: '#tag', ':tag:', 'yaml-bare'
-    tag_notation = "#tag",
+    tag_notation = ":tag: ",
 
     -- command palette theme: dropdown (window) or ivy (bottom panel)
     command_palette_theme = "ivy",
@@ -133,8 +131,8 @@ END
 " other configuration for telekasten - shortcuts
 "
 nnoremap <leader>zf :lua require('telekasten').find_notes()<CR>
- nnoremap <leader>zd :lua require('telekasten').find_daily_notes()<CR>
- nnoremap <leader>zg :lua require('telekasten').search_notes()<CR>
+nnoremap <leader>zd :lua require('telekasten').find_daily_notes()<CR>
+nnoremap <leader>zg :lua require('telekasten').search_notes()<CR>
  nnoremap <leader>zz :lua require('telekasten').follow_link()<CR>
  nnoremap <leader>zT :lua require('telekasten').goto_today()<CR>
  nnoremap <leader>zW :lua require('telekasten').goto_thisweek()<CR>
@@ -144,20 +142,22 @@ nnoremap <leader>zf :lua require('telekasten').find_notes()<CR>
  nnoremap <leader>zy :lua require('telekasten').yank_notelink()<CR>
  nnoremap <leader>zc :lua require('telekasten').show_calendar()<CR>
  nnoremap <leader>zC :CalendarT<CR>
- nnoremap <leader>zi :lua require('telekasten').paste_img_and_link()<CR>
+ nnoremap <leader>zi :lua require('telekasten').insert_link({ i=true })<CR>
+ "nnoremap <leader>zi :lua require('telekasten').paste_img_and_link()<CR>
  nnoremap <leader>zt :lua require('telekasten').toggle_todo()<CR>
  nnoremap <leader>zb :lua require('telekasten').show_backlinks()<CR>
  nnoremap <leader>zF :lua require('telekasten').find_friends()<CR>
- nnoremap <leader>zI :lua require('telekasten').insert_img_link({ i=true })<CR>
- nnoremap <leader>zp :lua require('telekasten').preview_img()<CR>
- nnoremap <leader>zm :lua require('telekasten').browse_media()<CR>
+ "nnoremap <leader>zI :lua require('telekasten').insert_img_link({ i=true })<CR>
+ "nnoremap <leader>zp :lua require('telekasten').preview_img()<CR>
+ "nnoremap <leader>zm :lua require('telekasten').browse_media()<CR>
  nnoremap <leader># :lua require('telekasten').show_tags()<CR>
 
  " we could define [[ in **insert mode** to call insert link
  " inoremap [[ <ESC>:lua require('telekasten').insert_link()<CR>
  " alternatively: leader [
- inoremap <leader>[ <ESC>:lua require('telekasten').insert_link({ i=true })<CR>
+ "inoremap <leader>[ <ESC>:lua require('telekasten').insert_link({ i=true })<CR>
  inoremap <leader>zt <ESC>:lua require('telekasten').toggle_todo({ i=true })<CR>
+ "# problem with grep
  inoremap <leader># <cmd>lua require('telekasten').show_tags({i = true})<cr>
 
  " the following are for syntax-coloring [[links]] and ==highlighted text==
