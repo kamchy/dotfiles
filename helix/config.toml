@@ -1,0 +1,43 @@
+theme = "gruvbox"
+[editor]
+line-number = "relative"
+mouse = false
+rulers = [80]
+bufferline = "multiple"
+auto-completion=true
+auto-save=true
+auto-format=true
+text-width=80
+gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+soft-wrap.enable = true
+soft-wrap.max-indent-retain=80
+
+[editor.lsp]
+display-messages = true
+enable=true
+auto-signature-help=true
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+
+[editor.indent-guides]
+render = true
+character = "┊"
+skip-levels = 1
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.insert]
+j = { k = "normal_mode" }
+#[editor.soft-wrap]
+#enable = true
+
+[keys.normal]
+"backspace" = {  r = ":sh go run .",   b = ":sh go build .", s = [":w", ":config-reload"],  c = [":config-open"]}
