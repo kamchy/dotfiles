@@ -40,11 +40,12 @@
 
        :config
        ;; Remember to check the doc string of each of those variables.
-       (setq denote-directory (expand-file-name "~/zettel/denote"))
+       (setq denote-directory (expand-file-name "~/zettel/org/denote"))
        (setq denote-save-buffers nil)
        (setq denote-known-keywords '("emacs" "filozofia" "programowanie"))
        (setq denote-infer-keywords t)
        (setq denote-sort-keywords t)
+       (setq denote-sort-dired-extra-prompts nil) ;; skip sorting prompts
        (setq denote-prompts '(title keywords))
        (setq denote-excluded-directories-regexp nil)
        (setq denote-excluded-keywords-regexp nil)
@@ -55,6 +56,7 @@
 
        ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
        (denote-rename-buffer-mode 1))
+
 (with-eval-after-load 'org-capture
        (add-to-list 'org-capture-templates
                     '("n" "New note (with Denote)" plain
@@ -64,3 +66,36 @@
                       :immediate-finish nil
                       :kill-buffer t
                       :jump-to-captured t)))
+(use-package denote-journal
+  :ensure t
+  ;; Bind those to some key for your convenience.
+  :commands ( denote-journal-new-entry
+              denote-journal-new-or-existing-entry
+              denote-journal-link-or-create-entry )
+  :hook (calendar-mode . denote-journal-calendar-mode)
+  :config
+  ;; Use the "journal" subdirectory of the `denote-directory'.  Set this
+  ;; to nil to use the `denote-directory' instead.
+  (setq denote-journal-directory
+        (expand-file-name "journal" denote-directories))
+  ;; Default keyword for new journal entries. It can also be a list of
+  ;; strings.
+  (setq denote-journal-keyword "journal")
+  ;; Read the doc string of `denote-journal-title-format'.
+  (setq denote-journal-title-format "%Y-%m-%d"))
+
+;;(format-time-string "%Y-%m-%d")
+
+
+
+;; org-journal configuration
+;; (use-package org-journal
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   ;; Change default prefix key; needs to be set before loading org-journal
+;;   (setq org-journal-prefix-key "C-c j")
+;;   :config
+;;   (setq org-journal-dir "~/Dokumenty/org-shared/journal")
+;;   )
+

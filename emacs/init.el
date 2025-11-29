@@ -181,7 +181,7 @@ The DWIM behaviour of this command is as follows:
   (setq delete-by-moving-to-trash t)
   (setq dired-dwim-target t))
 
-The dired-subtree package provides commands to quickly view the contents of a folder with the TAB key.
+;;;The dired-subtree package provides commands to quickly view the contents of a folder with the TAB key.
 
 (use-package dired-subtree
   :ensure t
@@ -234,72 +234,20 @@ The dired-subtree package provides commands to quickly view the contents of a fo
 ;; Org-mode loaded here
 (load "~/.emacs.d/my-org-config.el")
 
-
-;; org-journal configuration
-(use-package org-journal
-  :ensure t
-  :defer t
-  :init
-  ;; Change default prefix key; needs to be set before loading org-journal
-  (setq org-journal-prefix-key "C-c j")
-  :config
-  (setq org-journal-dir "~/Dokumenty/org-shared/journal")
-  )
 ;; load denote config)
 (load "~/.emacs.d/my-denote-config.el")
-
-;; golang config TODO needs another file
-(use-package go-mode
-  :ensure t
-  :mode "\\.go\\'"
-  :preface
-   (defun vd/go-lsp-start()
-    (define-key go-ts-mode-map
-            ["RET"] 'newline-and-indent)
-    (define-key go-ts-mode-map
-            ["M-RET"] 'newline)
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t)
-    (lsp-deferred)
-    )
-  :hook
-  (go-ts-mode . vd/go-lsp-start)
-  :custom
-  (go-ts-mode-indent-offset 4)
-  :config
-  (add-to-list 'exec-path "~/.local/bin")
-  (setq lsp-go-analyses '(
-                          (nilness . t)
-                          (shadow . t)
-                          (unusedwrite . t)
-                          (fieldalignment . t)
-                                       )
-        lsp-go-codelenses '(
-                          (test . t)
-                          (tidy . t)
-                          (upgrade_dependency . t)
-                          (vendor . t)
-                          (run_govulncheck . t)
-                                       )
-        )
-)
-
-(use-package go-tag
-  :ensure t
-)
-
-(use-package godoctor
-  :ensure t
-)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(@ avy cider company denote ef-themes go-tag godoctor magit
-       marginalia markdown-mode markdown-ts-mode org-journal vertico))
+   '(@ cider company-jedi corfu denote-journal dired-subtree ef-themes
+       flycheck format-all go-tag godoctor gruvbox-theme java-snippets
+       just-mode justl lsp-java lsp-javacomp lsp-ui magit marginalia
+       markdown-ts-mode nerd-icons-completion nerd-icons-corfu
+       nerd-icons-dired orderless org-journal ox-typst python-mode
+       trashed typst-preview vertico))
  '(smtpmail-smtp-server "smtp.gmail.com")
  '(smtpmail-smtp-service 25))
 (custom-set-faces

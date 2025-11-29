@@ -1,14 +1,14 @@
 ;; from https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html
 (require 'org)
-(message "hello, my or config is loading...")
+(message "hello, my-org-config is loading...")
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cc" 'org-capture)
 (setq org-log-done t)
 
 ;; from crafters
-(setq org-directory "~/Dokumenty/org-shared/org-files")
-(setq org-agenda-files '("Tasks.org" "Birthdays.org" "Myśli.org" ))
+(setq org-directory "~/zettel/org/")
+(setq org-agenda-files '("Captures.org"))
 
 ;; If you only want to see the agenda for today
 ;; (setq org-agenda-span 'day)
@@ -23,17 +23,24 @@
         (sequence "READ(r)" "|" "DONE(d)")
         (sequence "WATCH(W)" "|" "DONE(d)")
         ))
-;; C-c C-c - insert tagl
+;; C-c C-c - insert tag
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l) ("outside" . ?o)))
 
 (setq org-clock-out-when-done '("DONE"))
-
+;;(setq captures (expand-file-name "Captures.org" org-directory))
 (setq org-capture-templates
-      `(("t" "Todo" entry (file+headline ,(expand-file-name "Tasks.org" org-directory) "Inbox")
-         "* TODO %?\n")
-	("m" "Myśli" entry (file+headline ,(expand-file-name "Myśli.org" org-directory) "Myśli różne")
-         "*%T  %^g\n%?") 
-	))
+      `(("t" "Todo" entry (file+headline ,(expand-file-name "Captures.org" org-directory) "Todos")
+	 "** TODO %?\n ")
+	("m" "Myśli" entry (file+headline ,(expand-file-name "Captures.org" org-directory) "Myśli")
+	 "** %?
+- Czas: %T
+- Pomyślane w pliku: %f
+%^G")
+	("h" "Help link" entry (file+headline ,(expand-file-name "Captures.org" org-directory) "Links")
+	 "** %A")
+	)
+      )
+  
 
 (message "loaded!!")
 
